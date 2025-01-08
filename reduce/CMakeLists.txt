@@ -1,0 +1,1 @@
+add_executable(baseline reduce_baseline.cu)
