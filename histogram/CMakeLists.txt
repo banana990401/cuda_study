@@ -1,0 +1,2 @@
+add_executable(histogram_v0 histogram_v0.cu)
+add_executable(histogram_v1 histogram_v1.cu)
