@@ -56,7 +56,7 @@ __device__ void blockReduce(float* smem)
 }
 
 template <int blockSize>
-__global__ void reduce_v3(float* d_in, float* d_out)
+__global__ void reduce_v4(float* d_in, float* d_out)
 {
     int tid   = threadIdx.x;
     int g_tid = blockIdx.x * (blockDim.x * 2) + threadIdx.x;
@@ -119,7 +119,7 @@ int main()
     dim3 Block(blockSize / 2);
 
     // warm up
-    reduce_v3<blockSize / 2><<<Grid, Block>>>(d_a, d_out);
+    reduce_v4<blockSize / 2><<<Grid, Block>>>(d_a, d_out);
 
     cudaEvent_t start, stop;
     cudaEventCreate(&start);
@@ -128,7 +128,7 @@ int main()
     int iter = 10;
     for(int i = 0; i < iter; i++)
     {
-        reduce_v3<blockSize / 2><<<Grid, Block>>>(d_a, d_out);
+        reduce_v4<blockSize / 2><<<Grid, Block>>>(d_a, d_out);
     }
     cudaEventRecord(stop);
     cudaEventSynchronize(stop);
@@ -150,7 +150,7 @@ int main()
         // printf("\n");
         printf("groudtruth is: %f \n", groudtruth);
     }
-    printf("reduce_v3 latency = %f ms\n", milliseconds / iter);
+    printf("reduce_v4 latency = %f ms\n", milliseconds / iter);
 
     cudaFree(d_a);
     cudaFree(d_out);
