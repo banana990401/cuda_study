@@ -1,0 +1,1 @@
+add_executable(gelu gelu.cu)
