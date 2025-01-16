@@ -1,0 +1,2 @@
+add_executable(fused_bias_mask_scale_and_add_fp32 fused_bias_mask_scale_and_add_fp32.cu)
+add_executable(fused_bias_mask_scale_and_add_fp16 fused_bias_mask_scale_and_add_fp16.cu)
