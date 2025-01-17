@@ -1,0 +1,1 @@
+add_executable(measure_GPU_peak_perf measure_GPU_peak_perf.cu)
